@@ -12,3 +12,4 @@ This is a simple web application that takes a user's preferences and uses OpenAI
 
 - React
 - OpenAI API
+- Docker
