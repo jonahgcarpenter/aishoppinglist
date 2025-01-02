@@ -1,4 +1,4 @@
-# AI Shopping List Web App
+# AI Shopping List Web App - in Progress
 
 This is a simple web application that takes a user's preferences and uses OpenAI to create a personalized shopping list.
 
@@ -10,6 +10,5 @@ This is a simple web application that takes a user's preferences and uses OpenAI
 
 ## Technologies Used
 
-- React
 - OpenAI API
 - Docker
