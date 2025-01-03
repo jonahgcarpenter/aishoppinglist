@@ -1,1 +1,148 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  /* Colors */
+  --primary-color: #845ef7;
+  --secondary-color: #9775fa;
+  --accent-color: #be4bdb;
+  --background-color: #1a1b1e;
+  --surface-color: #2c2e33;
+  --surface-color-hover: #34363c;
+  --text-color: #e9ecef;
+  --text-light: #868e96;
+  --border-color: #404348;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 3rem;
+  
+  /* Layout */
+  --max-width: 1200px;
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 16px;
+  
+  /* Effects */
+  --box-shadow-sm: 0 2px 4px rgba(0,0,0,0.3);
+  --box-shadow-md: 0 4px 8px rgba(0,0,0,0.4);
+  --box-shadow-lg: 0 8px 16px rgba(0,0,0,0.5);
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background-color);
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  min-height: 100vh;
+  margin: 0;
+}
+
+.btn {
+  padding: 0.8rem 1.5rem;
+  margin: 0 0.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* Layout Components */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 60px; /* Space for fixed footer */
+}
+
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  width: 100%;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  width: 100%;
+}
+
+/* Utility Classes */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-sm);
+}
+
+/* Page Card Variations */
+.page-card {
+  padding: var(--spacing-lg);
+  margin: 0 auto;
+  width: 100%;
+  background-color: var(--surface-color);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--box-shadow-sm);
+  transition: var(--transition-normal);
+  border: 1px solid var(--border-color);
+}
+
+.page-card:hover {
+  box-shadow: var(--box-shadow-md);
+  border-color: var(--primary-color);
+}
+
+.page-card--center {
+  text-align: center;
+}
+
+.page-card--small {
+  max-width: 600px;
+}
+
+.page-card--medium {
+  max-width: 800px;
+}
+
+.page-card--large {
+  max-width: var(--max-width);
+}
+
+/* Typography */
+.page-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: var(--spacing-md);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .page-card {
+    padding: var(--spacing-md);
+  }
+  
+  .page-title {
+    font-size: 1.5rem;
+  }
+}
