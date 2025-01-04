@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -7,36 +7,21 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [RouterLink, RouterLinkActive, CommonModule],
   template: `
-    <nav class="navbar">
+    <nav class="navbar glass">
       <div class="nav-content">
-        <a routerLink="/" class="brand">
-          🛒 AI Shopping List
-        </a>
-        <button 
-          class="hamburger" 
-          [class.open]="isMenuOpen" 
-          (click)="toggleMenu()"
-          aria-label="Menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <div class="nav-links" [class.open]="isMenuOpen">
-          <a routerLink="/" 
-             routerLinkActive="active" 
-             [routerLinkActiveOptions]="{exact: true}"
-             (click)="closeMenu()">
-            Home
+        <a routerLink="/" class="brand desktop-only"><i class="fas fa-cart-arrow-down"></i> Smart Cart</a>
+        <div class="nav-links">
+          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
           </a>
-          <a routerLink="/preferences" 
-             routerLinkActive="active"
-             (click)="closeMenu()">
-            Preferences
+          <a routerLink="/preferences" routerLinkActive="active">
+            <i class="fas fa-cog"></i>
+            <span>Preferences</span>
           </a>
-          <a routerLink="/cart" 
-             routerLinkActive="active"
-             (click)="closeMenu()">
-            Cart
+          <a routerLink="/cart" routerLinkActive="active">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Cart</span>
           </a>
         </div>
       </div>
@@ -45,17 +30,5 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  isMenuOpen = false;
-
-  toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
-    document.body.classList.toggle('menu-open');
-  }
-
-  closeMenu() {
-    if (this.isMenuOpen) {
-      this.isMenuOpen = false;
-      document.body.classList.remove('menu-open');
-    }
-  }
+  // No additional logic needed
 }

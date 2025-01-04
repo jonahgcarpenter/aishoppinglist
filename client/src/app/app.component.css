@@ -1,85 +1,51 @@
 .app-container {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
   position: relative;
-  background: linear-gradient(to bottom, var(--background), var(--surface));
-  padding-bottom: 100px; /* Increased to account for taller footer */
+  overflow-x: hidden;
+  background: var(--background);
 }
 
 .app-container::before {
   content: '';
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: 
-    radial-gradient(circle at 0% 0%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 100% 100%, rgba(244, 63, 94, 0.1) 0%, transparent 50%);
-  z-index: -1;
+    radial-gradient(circle at 0% 0%, rgba(0, 245, 212, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(255, 46, 99, 0.1) 0%, transparent 50%);
+  z-index: var(--z-background);
+  pointer-events: none;
 }
 
-.page-container {
-  flex: 1 0 auto;
-  width: 100%;
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: var(--spacing-xl);
-  min-height: calc(100vh - 140px);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-lg);
+.app-container::after {
+  content: '';
+  position: fixed;
+  width: 200vw;
+  height: 200vh;
+  top: -50%;
+  left: -50%;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  z-index: var(--z-background);
+  pointer-events: none;
+  animation: grain 8s steps(1) infinite;
 }
 
-.page-container > * {
-  background: var(--glass-background);
-  backdrop-filter: blur(12px);
-  border-radius: var(--border-radius);
-  padding: var(--spacing-xl);
-  box-shadow: var(--box-shadow);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  @extend .card;
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0) }
+  10% { transform: translate(-5%, -5%) }
+  20% { transform: translate(-10%, 5%) }
+  30% { transform: translate(5%, -10%) }
+  40% { transform: translate(-5%, 15%) }
+  50% { transform: translate(-10%, 5%) }
+  60% { transform: translate(15%, 0) }
+  70% { transform: translate(0, 10%) }
+  80% { transform: translate(-15%, 0) }
+  90% { transform: translate(10%, 5%) }
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (max-width: var(--breakpoint-mobile)) {
-  .app-container {
-    padding-bottom: 60px;
-    min-height: 100dvh;  /* Use dynamic viewport height */
-  }
-
-  .page-container {
-    padding: var(--spacing-sm);
-    gap: var(--spacing-sm);
-    margin-top: 0;
-    min-height: calc(100dvh - 120px);  /* Account for navbar and footer */
-  }
-  
-  .page-container > * {
-    padding: var(--spacing-md);
-    margin: 0;
-    border-radius: var(--spacing-sm);
-  }
-}
-
-/* Add tablet breakpoint */
-@media (min-width: calc(var(--breakpoint-mobile) + 1px)) and (max-width: var(--breakpoint-tablet)) {
-  .app-container {
-    padding-bottom: 70px;
-  }
-
-  .page-container {
-    padding: var(--spacing-lg);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
