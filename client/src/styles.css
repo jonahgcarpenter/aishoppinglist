@@ -1,148 +1,135 @@
-/* You can add global styles to this file, and also import other style files */
-
 :root {
-  /* Colors */
-  --primary-color: #845ef7;
-  --secondary-color: #9775fa;
-  --accent-color: #be4bdb;
-  --background-color: #1a1b1e;
-  --surface-color: #2c2e33;
-  --surface-color-hover: #34363c;
-  --text-color: #e9ecef;
-  --text-light: #868e96;
-  --border-color: #404348;
+  --primary: #7c3aed;
+  --primary-light: #a78bfa;
+  --background: #0f0f1a;
+  --surface: #1a1a2e;
+  --surface-light: #262644;
+  --text: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --accent: #f43f5e;
+  --success: #10b981;
+  --warning: #f59e0b;
   
-  /* Gradients */
-  --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-  
-  /* Spacing */
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 2rem;
-  --spacing-lg: 3rem;
-  
-  /* Layout */
   --max-width: 1200px;
-  --border-radius-sm: 4px;
-  --border-radius-md: 8px;
-  --border-radius-lg: 16px;
+  --padding-standard: 1.5rem;
+  --box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  --glass-shadow: 0 4px 32px rgba(124, 58, 237, 0.1);
+  --transition-standard: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --breakpoint-mobile: 600px;  /* Increased from 480px */
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1024px;
+  --border-radius: 1rem;
+  --glass-background: rgba(26, 26, 46, 0.7);
+
+  /* Add new spacing system */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
   
-  /* Effects */
-  --box-shadow-sm: 0 2px 4px rgba(0,0,0,0.3);
-  --box-shadow-md: 0 4px 8px rgba(0,0,0,0.4);
-  --box-shadow-lg: 0 8px 16px rgba(0,0,0,0.5);
-  
-  /* Transitions */
-  --transition-fast: 0.2s ease;
-  --transition-normal: 0.3s ease;
-  --transition-slow: 0.5s ease;
+  /* Add consistent card styles */
+  --card-padding: var(--spacing-lg);
+  --content-width: min(100% - 1rem, var(--max-width));  /* Reduced side margins on mobile */
+
+  /* Add hamburger menu variables */
+  --hamburger-width: 24px;
+  --hamburger-height: 3px;
+  --hamburger-gap: 6px;
+  --menu-timing: 0.3s ease;
 }
 
-/* Reset and base styles */
-* {
+/* Global reset and base styles */
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: var(--background-color);
-  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at top right, var(--surface-light), var(--background));
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  min-height: 100vh;
   line-height: 1.6;
-  color: var(--text-color);
-  min-height: 100vh;
-  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  overflow-y: overlay;
 }
 
-.btn {
-  padding: 0.8rem 1.5rem;
-  margin: 0 0.5rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-
-.btn:hover {
-  opacity: 0.9;
-}
-
-/* Layout Components */
-.app-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 60px; /* Space for fixed footer */
-}
-
-.page-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+/* Add utility class for preventing body scroll when menu is open */
+body.menu-open {
+  overflow: hidden;
+  position: fixed;
   width: 100%;
+  height: 100%;
+  touch-action: none;
+  -webkit-overflow-scrolling: none;
 }
 
-main {
-  flex: 1;
-  display: flex;
-  width: 100%;
-}
-
-/* Utility Classes */
+/* Common utility classes */
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 var(--spacing-sm);
+  padding: 0 var(--padding-standard);
+  width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: var(--spacing-md);
 }
 
-/* Page Card Variations */
-.page-card {
-  padding: var(--spacing-lg);
-  margin: 0 auto;
-  width: 100%;
-  background-color: var(--surface-color);
-  border-radius: var(--border-radius-md);
-  box-shadow: var(--box-shadow-sm);
-  transition: var(--transition-normal);
-  border: 1px solid var(--border-color);
+/* Add new utility classes */
+.glass {
+  background: var(--glass-background);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--glass-shadow);
 }
 
-.page-card:hover {
-  box-shadow: var(--box-shadow-md);
-  border-color: var(--primary-color);
+.hover-effect {
+  transition: transform var(--transition-standard);
 }
 
-.page-card--center {
-  text-align: center;
+.hover-effect:hover {
+  transform: translateY(-4px);
 }
 
-.page-card--small {
-  max-width: 600px;
+.card {
+  background: var(--glass-background);
+  backdrop-filter: blur(12px);
+  border-radius: var(--border-radius);
+  padding: var(--card-padding);
+  box-shadow: var(--box-shadow);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.page-card--medium {
-  max-width: 800px;
+/* Add new global styles */
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-.page-card--large {
-  max-width: var(--max-width);
+button {
+  cursor: pointer;
+  font-family: inherit;
 }
 
-/* Typography */
-.page-title {
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--text-color);
-  margin-bottom: var(--spacing-md);
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .page-card {
-    padding: var(--spacing-md);
+@media (max-width: var(--breakpoint-mobile)) {
+  :root {
+    --padding-standard: 1rem;
+    --spacing-xl: 1.5rem;    /* Reduced from 2rem */
+    --spacing-lg: 1rem;      /* Reduced from 1.5rem */
+    --spacing-md: 0.75rem;   /* Reduced from 1rem */
+    --card-padding: 0.75rem;
+    --border-radius: 0.5rem;
   }
-  
-  .page-title {
-    font-size: 1.5rem;
+
+  .container {
+    padding-inline: var(--spacing-sm);
+  }
+
+  .card {
+    margin: var(--spacing-xs) 0;
+    padding: var(--spacing-md);
   }
 }

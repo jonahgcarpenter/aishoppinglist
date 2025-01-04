@@ -1,11 +1,8 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { CartComponent } from './pages/cart/cart.component';
-import { MyPreferencesComponent } from './pages/my-preferences/my-preferences.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'cart', component: CartComponent },
-  { path: 'preferences', component: MyPreferencesComponent },
-  { path: '**', redirectTo: '' }
+  { path: 'preferences', loadComponent: () => import('./pages/my-preferences/my-preferences.component').then(m => m.MyPreferencesComponent) },
+  { path: 'cart', loadComponent: () => import('./pages/cart/cart.component').then(m => m.CartComponent) }
 ];

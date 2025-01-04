@@ -5,7 +5,12 @@ import { Component } from '@angular/core';
   standalone: true,
   template: `
     <footer>
-      <p>© {{currentYear}} Shopping List App - All rights reserved</p>
+      <div class="footer-content">
+        <p>Made with ❤️ | © {{currentYear}} Jonah Carpenter</p>
+        <div class="social-links">
+          <a href="https://github.com/jonahgcarpenter/aishoppinglist" target="_blank">GitHub</a>
+        </div>
+      </div>
     </footer>
   `,
   styleUrls: ['./footer.component.css']
